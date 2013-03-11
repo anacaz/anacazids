@@ -99,8 +99,8 @@ void get_ids_mode(char *buffer)
  */
 int menu_show(menu_t *p)
 {
-	static char notify1[256] = { "** Copyright (c)2010 RGB Networks Inc.,                                      **" };
-	static char notify2[256] = { "**           ALL RIGHTS RESERVED                                             **" };
+	static char notify1[256] = { "**      ANACAZ IDS                                                           **" };
+	static char notify2[256] = { "**                                                                           **" };
 	static char banner[256]  = { "*******************************************************************************" };
 	static char border[256]  = { "**                                                                           **" };
 	static char guide[256]   = { "** ESC/u = <back>   ^N = HELP   ^L = TLS DNLD CTL   ^T = RAM CARVE           **" };
