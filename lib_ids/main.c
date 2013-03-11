@@ -1,6 +1,8 @@
 /*
  * Integrated Diagnostics Subsystem
  *
+ * Copyright(c) Anacaz Networks, Inc., ALL RIGHTS RESERVED
+ *
  * rfa - 060718-20-0804-07
  */
 #ifdef LINUX
