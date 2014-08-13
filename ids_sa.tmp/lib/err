@@ -1,0 +1,93 @@
+gcc -g  -Os   -D__KERNEL__ -DTEXT_BASE=  -I/home/rabrams/p4ws/uboot/include -I/home/rabrams/p4ws/uboot/include/ids -fno-builtin -ffreestanding -nostdinc -isystem /usr/lib/gcc/x86_64-redhat-linux/4.1.2/include -pipe  -Wall -Wstrict-prototypes -c -o patgen.o patgen.c
+gcc -g  -Os   -D__KERNEL__ -DTEXT_BASE=  -I/home/rabrams/p4ws/uboot/include -I/home/rabrams/p4ws/uboot/include/ids -fno-builtin -ffreestanding -nostdinc -isystem /usr/lib/gcc/x86_64-redhat-linux/4.1.2/include -pipe  -Wall -Wstrict-prototypes -c -o pgen.o pgen.c
+In file included from pgen.c:15:
+/home/rabrams/p4ws/uboot/include/net.h:72: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘IPaddr_t’
+/home/rabrams/p4ws/uboot/include/net.h:80: error: expected ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:101: error: expected declaration specifiers or ‘...’ before ‘bd_t’
+/home/rabrams/p4ws/uboot/include/net.h:112: error: expected ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:123: error: expected ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:144: error: expected specifier-qualifier-list before ‘uchar’
+/home/rabrams/p4ws/uboot/include/net.h:163: error: expected specifier-qualifier-list before ‘uchar’
+/home/rabrams/p4ws/uboot/include/net.h:184: error: expected specifier-qualifier-list before ‘uchar’
+/home/rabrams/p4ws/uboot/include/net.h:209: error: expected specifier-qualifier-list before ‘ushort’
+/home/rabrams/p4ws/uboot/include/net.h:249: error: expected specifier-qualifier-list before ‘uchar’
+/home/rabrams/p4ws/uboot/include/net.h:303: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetOurGatewayIP’
+/home/rabrams/p4ws/uboot/include/net.h:304: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetOurSubnetMask’
+/home/rabrams/p4ws/uboot/include/net.h:305: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetOurDNSIP’
+/home/rabrams/p4ws/uboot/include/net.h:312: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetBootFileSize’
+/home/rabrams/p4ws/uboot/include/net.h:314: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetBootFileXferSize’
+/home/rabrams/p4ws/uboot/include/net.h:315: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetOurEther’
+/home/rabrams/p4ws/uboot/include/net.h:316: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetServerEther’
+/home/rabrams/p4ws/uboot/include/net.h:317: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetOurIP’
+/home/rabrams/p4ws/uboot/include/net.h:318: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetServerIP’
+/home/rabrams/p4ws/uboot/include/net.h:319: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:320: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:321: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:324: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetBcastAddr’
+/home/rabrams/p4ws/uboot/include/net.h:325: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetEtherNullAddr’
+/home/rabrams/p4ws/uboot/include/net.h:329: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetOurVLAN’
+/home/rabrams/p4ws/uboot/include/net.h:330: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetOurNativeVLAN’
+/home/rabrams/p4ws/uboot/include/net.h:332: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetCDPAddr’
+/home/rabrams/p4ws/uboot/include/net.h:333: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘CDPNativeVLAN’
+/home/rabrams/p4ws/uboot/include/net.h:334: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘CDPApplianceVLAN’
+/home/rabrams/p4ws/uboot/include/net.h:379: warning: type defaults to ‘int’ in declaration of ‘uchar’
+/home/rabrams/p4ws/uboot/include/net.h:379: error: expected ‘;’, ‘,’ or ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:382: warning: type defaults to ‘int’ in declaration of ‘uchar’
+/home/rabrams/p4ws/uboot/include/net.h:382: error: expected ‘;’, ‘,’ or ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:385: error: expected ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:386: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetCksum’
+/home/rabrams/p4ws/uboot/include/net.h:389: error: expected ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:390: error: expected ‘)’ before ‘thand_f’
+/home/rabrams/p4ws/uboot/include/net.h:393: warning: type defaults to ‘int’ in declaration of ‘uchar’
+/home/rabrams/p4ws/uboot/include/net.h:393: error: expected ‘;’, ‘,’ or ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:396: error: expected ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:399: warning: type defaults to ‘int’ in declaration of ‘uchar’
+/home/rabrams/p4ws/uboot/include/net.h:399: error: expected ‘;’, ‘,’ or ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:402: warning: parameter names (without types) in function declaration
+/home/rabrams/p4ws/uboot/include/net.h:412: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetReadIP’
+/home/rabrams/p4ws/uboot/include/net.h:420: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘NetReadLong’
+/home/rabrams/p4ws/uboot/include/net.h:428: error: expected declaration specifiers or ‘...’ before ‘IPaddr_t’
+/home/rabrams/p4ws/uboot/include/net.h: In function ‘NetWriteIP’:
+/home/rabrams/p4ws/uboot/include/net.h:430: warning: implicit declaration of function ‘memcpy’
+/home/rabrams/p4ws/uboot/include/net.h:430: error: ‘ip’ undeclared (first use in this function)
+/home/rabrams/p4ws/uboot/include/net.h:430: error: (Each undeclared identifier is reported only once
+/home/rabrams/p4ws/uboot/include/net.h:430: error: for each function it appears in.)
+/home/rabrams/p4ws/uboot/include/net.h: In function ‘NetCopyIP’:
+/home/rabrams/p4ws/uboot/include/net.h:436: error: ‘IPaddr_t’ undeclared (first use in this function)
+/home/rabrams/p4ws/uboot/include/net.h: At top level:
+/home/rabrams/p4ws/uboot/include/net.h:440: error: expected ‘)’ before ‘*’ token
+/home/rabrams/p4ws/uboot/include/net.h:469: error: expected ‘)’ before ‘x’
+/home/rabrams/p4ws/uboot/include/net.h:472: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘string_to_ip’
+/home/rabrams/p4ws/uboot/include/net.h:475: error: expected ‘)’ before ‘x’
+/home/rabrams/p4ws/uboot/include/net.h:478: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘string_to_VLAN’
+/home/rabrams/p4ws/uboot/include/net.h:481: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘getenv_IPaddr’
+/home/rabrams/p4ws/uboot/include/net.h:484: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘getenv_VLAN’
+In file included from /home/rabrams/p4ws/uboot/include/config.h:4,
+                 from /home/rabrams/p4ws/uboot/include/common.h:35,
+                 from /home/rabrams/p4ws/uboot/include/ids/ids_jmpvec.h:10,
+                 from pgen.c:18:
+/home/rabrams/p4ws/uboot/include/configs/rgb_tcm.h:258:23: error: operator '<' has no left operand
+In file included from /home/rabrams/p4ws/uboot/include/linux/string.h:21,
+                 from /home/rabrams/p4ws/uboot/include/common.h:38,
+                 from /home/rabrams/p4ws/uboot/include/ids/ids_jmpvec.h:10,
+                 from pgen.c:18:
+/home/rabrams/p4ws/uboot/include/asm/string.h:24: error: conflicting types for ‘memcpy’
+/home/rabrams/p4ws/uboot/include/net.h:430: error: previous implicit declaration of ‘memcpy’ was here
+pgen.c: In function ‘pgen_eth’:
+pgen.c:61: error: ‘Ethernet_t’ has no member named ‘et_dest’
+pgen.c:62: error: ‘Ethernet_t’ has no member named ‘et_src’
+pgen.c:65: error: ‘Ethernet_t’ has no member named ‘et_protlen’
+pgen.c: In function ‘pgen_vlan’:
+pgen.c:78: error: ‘VLAN_Ethernet_t’ has no member named ‘vet_tag’
+pgen.c: In function ‘pgen_ip’:
+pgen.c:89: error: ‘Ethernet_t’ has no member named ‘et_protlen’
+pgen.c:91: error: ‘Ethernet_t’ has no member named ‘et_prot’
+pgen.c:92: error: ‘Ethernet_t’ has no member named ‘et_protlen’
+pgen.c:94: error: ‘Ethernet_t’ has no member named ‘et_protlen’
+pgen.c:96: error: ‘VLAN_Ethernet_t’ has no member named ‘vet_type’
+pgen.c:97: error: ‘Ethernet_t’ has no member named ‘et_protlen’
+pgen.c:101: error: ‘Ethernet_t’ has no member named ‘et_protlen’
+pgen.c:105: error: ‘IP_t’ has no member named ‘ip_p’
+pgen.c:106: error: ‘IP_t’ has no member named ‘ip_src’
+pgen.c:107: error: ‘IP_t’ has no member named ‘ip_dst’
+make: *** [pgen.o] Error 1
