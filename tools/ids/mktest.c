@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 			exit(-1);
 
 		}
-		snprintf(&test_hdr.argv[argcount][0], 31, *argv);
+		snprintf(&test_hdr.argv[argcount][0], 31, "%s", *argv);
 		test_hdr.argv[argcount][31] = '\0';
 		sprintf(buffer, "#define %s", *argv);
 		while ((cp = strchr(buffer, '-')))
@@ -195,7 +195,7 @@ int main(int argc, char **argv)
 		}
 	}
 	sprintf(test_hdr.argc, "%d", argcount);
-	sprintf(test_hdr.name, newfile);
+	sprintf(test_hdr.name, "%s", newfile);
 	if ((ext = strrchr(test_hdr.name, '.')) != 0)
 		*ext = '\0';
 	sprintf(test_hdr.pass, "next");

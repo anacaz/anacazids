@@ -4,6 +4,8 @@
  * rfa - 060725
  */
 #include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -103,8 +105,8 @@ int main(int argc, char **argv)
 void set_test_hdr(test_hdr_t *thp, char *filename, int size,
    char *pass, char *fail)
 {
-	sprintf(thp->name, filename);
-	sprintf(thp->pass, pass);
-	sprintf(thp->fail, fail);
+	sprintf(thp->name, "%s", filename);
+	sprintf(thp->pass, "%s", pass);
+	sprintf(thp->fail, "%s", fail);
 	sprintf(thp->size, "%d", size);
 }

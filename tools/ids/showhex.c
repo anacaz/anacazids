@@ -1,9 +1,10 @@
 /*
  * Integrated Diagnostics Subsystem
  *
- * rfa - 090610
+ * rfa - 090610-140815
  */
 #include <stdio.h>
+#include <stdint.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -17,7 +18,7 @@ void exit(int);
 int main(int argc, char **argv)
 {
 	int odd, even;
-	unsigned long hex;
+	uint32_t hex;
 
 	odd = even = 0;
 	while (--argc)
@@ -30,7 +31,7 @@ int main(int argc, char **argv)
 	for (hex = 0; hex < 256; ++hex)
 	{
 		int count;
-		unsigned long bit;
+		uint32_t bit;
 
 		printf("%02X: ", hex);
 		for (count = 0, bit = 0x80; bit; bit >>= 1)

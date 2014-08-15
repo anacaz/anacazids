@@ -4,6 +4,8 @@
  * rfa - 060719-24-25-26-27
  */
 #include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -81,7 +83,7 @@ int main(int argc, char **argv)
 	 */
 	ext = strrchr(tlsfile, '.');
 	*ext = '\0';
-	sprintf(list_hdr.name, tlsfile);
+	sprintf(list_hdr.name, "%s", tlsfile);
 	*ext = '.';
 	if (write(tlsfd, &list_hdr, sizeof(list_hdr)) == -1)
 		exit(-1);
@@ -208,9 +210,9 @@ void set_test_hdr(test_hdr_t *thp, char *filename, int size,
 	tlssize += size;
 	if ((ext = strrchr(filename, '.')) != 0)
 		*ext = '\0';
-	sprintf(thp->name, filename);
-	sprintf(thp->pass, pass);
-	sprintf(thp->fail, fail);
+	sprintf(thp->name, "%s", filename);
+	sprintf(thp->pass, "%s", pass);
+	sprintf(thp->fail, "%s", fail);
 	sprintf(thp->size, "%d", size);
 	if (ext != 0)
 		*ext = '.';
