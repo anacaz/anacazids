@@ -1,7 +1,7 @@
 #
 # Integrated Diagnostics System
 #
-# rfa - 090429
+# rfa - 090429-140815
 #
 # include $(TOPDIR)/config.mk
 
@@ -26,7 +26,7 @@ OFILES=	patgen.o \
 #	ticks.o \
 #	cpu.o
 
-CFLAGS=	-I../.. -I../include -I../src -I../hw
+CFLAGS=	-I/usr/include -I../.. -I../../include -I../../include/ids -I../src -I../hw
 DFLAGS=	-DLINUX
 
 all:	libids-platform.a
