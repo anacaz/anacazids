@@ -1,6 +1,24 @@
 /*
  * Integrated Diagnostics Subsystem
  *
+ * This file is part of anacazids.
+ * 
+ * anacazids is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * u-boot jump vector interface file.
+ *
+ * rfa - 061102-090506-15
  * This is the menu driver.  All the magic happens here.
  *
  * Copyright (c)2006-2009 Anacaz Networks, Inc., ALL RIGHTS RESERVED
@@ -8,6 +26,7 @@
  * rfa - 060718-19-20-0804-15-16-17-18-0926-27-28-29-1025-090514-22-0601-02-03
  * rfa - 090623-24-0701-02-03
  */
+#include <stdint.h>
 #ifdef LINUX
 #include <stdio.h>
 #include <string.h>
@@ -33,7 +52,7 @@ FORWARD void config_debug_appl(menu_t *p);
 FORWARD void config_regress_appl(menu_t *p);
 FORWARD void config_fpga_appl(menu_t *p);
 FORWARD void menu_list_appl(menu_t *p);
-FORWARD void menu_tls_builder(menu_t *top_level, unsigned char *tlsbase);
+FORWARD void menu_tls_builder(menu_t *top_level, uint8_t *tlsbase);
 FORWARD static void menu_insert_run(menu_t *, list_hdr_t *, test_hdr_t *);
 FORWARD void menu_add(menu_t *p, item_t *item, menu_t *menu);
 
@@ -74,7 +93,7 @@ static menu_t *menu_alloc(void)
 void menu_list_appl(menu_t *p)
 {
 	char save_mode[64];
-	unsigned char *tlsbase;
+	uint8_t *tlsbase;
 
 	get_ids_mode(save_mode);
 	if (!strcmp(save_mode, "debug"))
@@ -88,7 +107,7 @@ void menu_list_appl(menu_t *p)
 		
 	}
 	printf(" Searching for TLS headers ...\n"),
-	tlsbase = (unsigned char *)DIR_TBL(TLSFILES).load_addr;
+	tlsbase = (uint8_t *)DIR_TBL(TLSFILES).load_addr;
 	menu_tls_builder(&list_menu, tlsbase);
 	if (!strcmp("autorun", save_mode))
 		(void)item_input(&list_menu, 1);
@@ -103,7 +122,7 @@ void menu_list_appl(menu_t *p)
  * BUG!!!  This finally needs to change DRAMATICALLY!!!
  * Needed in order to handle lists within lists.
  */
-void menu_tls_builder(menu_t *top_level, unsigned char *tlsbase)
+void menu_tls_builder(menu_t *top_level, uint8_t *tlsbase)
 {
 	// extern int list_menu_itemcount;
 	list_hdr_t *tlsp;
@@ -303,7 +322,7 @@ void menu_tls_builder(menu_t *top_level, unsigned char *tlsbase)
 				sprintf(itemp->data.reg.data, "%s", 0);
 				itemp->type = ITEM_REG;
 			}
-			idsp = (test_hdr_t *)&((unsigned char *)idsp)[(int)strtol(idsp->size, (char **)0, 0)];
+			idsp = (test_hdr_t *)&((uint8_t *)idsp)[(int)strtol(idsp->size, (char **)0, 0)];
 		}
 		tlsp = (list_hdr_t *)idsp;
 	}

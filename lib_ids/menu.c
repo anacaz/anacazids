@@ -1,13 +1,33 @@
 /*
  * Integrated Diagnostics Subsystem
  *
+ * This file is part of anacazids.
+ * 
+ * anacazids is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * u-boot jump vector interface file.
+ *
+ * rfa - 061102-090506-15
  * This is the menu driver.  All the magic happens here.
  *
  * Copyright (c)2006-2009 Anacaz Networks, Inc., ALL RIGHTS RESERVED
  *
  * rfa - 060718-19-20-0804-15-16-17-18-0926-27-28-29-1025-090514-22-0601-02-03
  * rfa - 090623-24-0709
+ * rfa - 140815
  */
+#include <stdint.h>
 #ifdef LINUX
 #include <stdio.h>
 #include <string.h>
@@ -156,9 +176,9 @@ int menu_show(menu_t *p)
 			 * Log SIZE.
 			 */
 			if (count == p->itemcount - 1)
-				size = log_dir.load_addr - (unsigned long)itemp->menu;
+				size = log_dir.load_addr - (uint32_t)itemp->menu;
 			else
-				size = (unsigned long)itemp[1].menu - (unsigned long)itemp->menu;
+				size = (uint32_t)itemp[1].menu - (uint32_t)itemp->menu;
 			printf("\t%8d", size);
 		}
 
@@ -320,21 +340,22 @@ int menu_show_reg(menu_t *menu)
 
 	if (!(itemp = find_item(menu, "access")))
 		return(0);
+
 	if (!strcmp("char", itemp->data.cache))
-		access = sizeof(char);
+		access = sizeof(uint8_t);
 	else if (!strcmp("short", itemp->data.cache))
-		access = sizeof(short);
+		access = sizeof(uint16_t);
 	else if (!strcmp("long", itemp->data.cache))
-		access = sizeof(long);
+		access = sizeof(uint32_t);
 	else if (!strcmp("longlong", itemp->data.cache))
-		access = sizeof(long long);
+		access = sizeof(uint64_t);
 	else
-		access = sizeof(long);
+		access = sizeof(uint32_t);
 
 	regcount = 0;
 	for (count = 0; count < menu->itemcount; ++count)
 	{
-		unsigned long raddr;
+		uint32_t raddr;
 
 		itemp = &menu->itemlist[count];
 		if (itemp->type != ITEM_REG)
@@ -352,39 +373,39 @@ int menu_show_reg(menu_t *menu)
 #endif /* COMMENT */
 		switch (access)
 		{
-		case sizeof(char):
+		case sizeof(uint8_t):
 		{
-			unsigned char data, mask;
+			uint32_t data, mask;
 
-			mask = (unsigned char)strtol(itemp->data.reg.mask, (char **)0, 0);
-			data = *((volatile unsigned char *)raddr) & mask;
+			mask = (uint32_t)strtol(itemp->data.reg.mask, (char **)0, 0);
+			data = *((volatile uint8_t *)raddr) & mask;
 			sprintf(itemp->data.reg.data, "0x%02X", data);
 			break;
 		}
-		case sizeof(short):
+		case sizeof(uint16_t):
 		{
-			unsigned short data, mask;
+			uint16_t data, mask;
 
-			mask = (unsigned short)strtol(itemp->data.reg.mask, (char **)0, 0);
-			data = *((volatile unsigned short *)raddr) & mask;
+			mask = (uint16_t)strtol(itemp->data.reg.mask, (char **)0, 0);
+			data = *((volatile uint16_t *)raddr) & mask;
 			sprintf(itemp->data.reg.data, "0x%04X", data);
 			break;
 		}
-		case sizeof(long):
+		case sizeof(uint32_t):
 		{
-			unsigned long data, mask;
+			uint32_t data, mask;
 
-			mask = (unsigned long)strtol(itemp->data.reg.mask, (char **)0, 0);
-			data = *((volatile unsigned long *)raddr) & mask;
+			mask = (uint32_t)strtol(itemp->data.reg.mask, (char **)0, 0);
+			data = *((volatile uint32_t *)raddr) & mask;
 			sprintf(itemp->data.reg.data, "0x%08X", data);
 			break;
 		}
-		case sizeof(long long):
+		case sizeof(uint64_t):
 		{
-			unsigned long long data, mask;
+			uint64_t data, mask;
 
-			mask = (unsigned long long)strtol(itemp->data.reg.mask, (char **)0, 0);
-			data = *((volatile unsigned long long *)raddr) & mask;
+			mask = (uint64_t)strtol(itemp->data.reg.mask, (char **)0, 0);
+			data = *((volatile uint64_t *)raddr) & mask;
 			sprintf(itemp->data.reg.data, "0x%016X", data);
 			break;
 		}
@@ -810,33 +831,33 @@ static void get_parm_input(char *prompt, char *value)
  */
 static void get_reg_input(hwreg_t *reg, char *access)
 {
-	unsigned long raddr, data;
+	uint32_t raddr, data;
 	int n, c;
 	int size;
 
 	if (!strcmp("char", access))
-		size = sizeof(char);
+		size = sizeof(uint8_t);
 	else if (!strcmp("short", access))
-		size = sizeof(short);
+		size = sizeof(uint16_t);
 	else if (!strcmp("longlong", access))
-		size = sizeof(long long);
+		size = sizeof(uint64_t);
 	else
-		size = sizeof(long);
+		size = sizeof(uint32_t);
 
 	raddr = strtol(reg->addr, (char **)0, 0);
 
 	switch (size)
 	{
-	case sizeof(char):
+	case sizeof(uint8_t):
 		printf("\t%s=%s\b\b\b\b", reg->addr, reg->data);
 		break;
-	case sizeof(short):
+	case sizeof(uint16_t):
 		printf("\t%s=%s\b\b\b\b\b\b", reg->addr, reg->data);
 		break;
-	case sizeof(long):
+	case sizeof(uint32_t):
 		printf("\t%s=%s\b\b\b\b\b\b\b\b\b\b", reg->addr, reg->data);
 		break;
-	case sizeof(long long):
+	case sizeof(uint64_t):
 		printf("\t%s=%s\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b",
 			reg->addr, reg->data);
 		break;
@@ -878,20 +899,20 @@ static void get_reg_input(hwreg_t *reg, char *access)
 	switch (size)
 	{
 	case sizeof(char):
-		*(volatile unsigned char *)raddr = (unsigned char)data;
-		sprintf(reg->data, "0x%02X", (unsigned char)data);
+		*(volatile uint8_t *)raddr = (uint8_t)data;
+		sprintf(reg->data, "0x%02X", (uint8_t)data);
 		break;
 	case sizeof(short):
-		*(volatile unsigned short *)raddr = (unsigned short)data;
-		sprintf(reg->data, "0x%04X", (unsigned short)data);
+		*(volatile uint16_t *)raddr = (uint16_t)data;
+		sprintf(reg->data, "0x%04X", (uint16_t)data);
 		break;
 	case sizeof(long):
-		*(volatile unsigned long *)raddr = data;
-		sprintf(reg->data, "0x%08X", (unsigned long)data);
+		*(volatile uint32_t *)raddr = data;
+		sprintf(reg->data, "0x%08X", (uint32_t)data);
 		break;
 	case sizeof(long long):
-		*(volatile unsigned long long *)raddr = (unsigned long long)data; /* BUG !!! */
-		sprintf(reg->data, "0x%016X", (unsigned long long)data);
+		*(volatile uint64_t *)raddr = (uint64_t)data; /* BUG !!! */
+		sprintf(reg->data, "0x%016X", (uint64_t)data);
 		break;
 	default:
 		break;

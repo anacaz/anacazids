@@ -1,6 +1,24 @@
 /*
  * Integrated Diagnostics Subsystem
  *
+ * This file is part of anacazids.
+ * 
+ * anacazids is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * u-boot jump vector interface file.
+ *
+ * rfa - 061102-090506-15
  * This is the test execution driver.  All test exection, counter manipulation,
  * statistics collection, and fail policy invocation happens here.
  *
@@ -8,7 +26,9 @@
  *
  * rfa - 060718-19-20-0804-15-16-17-18-0926-27-28-29-1025-090514-22-0601-02-03
  * rfa - 090623-23-0720-1105-06
+ * rfa - 140815
  */
+#include <stdint.h>
 #include <common.h>
 #include <command.h>
 #include <linux/ctype.h>
@@ -33,7 +53,7 @@ FORWARD void test_stats_appl(menu_t *);
 FORWARD void get_stats_appl(menu_t *);		/* Display tests stats */
 FORWARD time_t gettime(void);
 FORWARD int is_control_c(void);
-FORWARD void sleep(unsigned long delay);
+FORWARD void sleep(uint32_t delay);
 
 static int load_args(menu_t *, char *argv[]);
 
@@ -437,7 +457,7 @@ int do_test_go_appl(menu_t *p)
 		 */
 		else if (!strncmp(action, "wait", 4))
 		{
-			unsigned long usec;
+			uint32_t usec;
 
 			if ((cp = strchr(action, '=')))
 				usec = strtol(++cp, (char **)0, 0);
@@ -535,12 +555,12 @@ int do_test_appl(menu_t *p, char **action)
 		{
 			char *argv[16];
 			int argc;
-			unsigned long addr;
+			uint32_t addr;
 
 			/*
 			 * Find test.
 			 */
-			addr = (unsigned long)&idsp[1];
+			addr = (uint32_t)&idsp[1];
 			argc = load_args(p, argv);
 			rv = ids_bootelf(addr, argc, argv);
 		}
@@ -721,8 +741,8 @@ void settime(time_t time)
 time_t gettime()
 {
 #if 1
-	unsigned long long ticks;
-	unsigned long tbclk;
+	uint64_t ticks;
+	uint32_t tbclk;
 	time_t currtime;
 
 	ticks = get_ticks();
@@ -771,9 +791,9 @@ int is_control_c()
 	return(exec_ask("^C Interrupt -- Do you really want to quit?"));
 }
 
-void sleep(unsigned long delay)
+void sleep(uint32_t delay)
 {
-	unsigned long start = get_timer(0);
+	uint32_t start = get_timer(0);
 
 	delay *= CFG_HZ;
 	while (get_timer(start) < delay)
