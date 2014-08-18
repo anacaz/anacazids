@@ -18,7 +18,6 @@
  *
  * u-boot jump vector interface file.
  *
- * rfa - 061102-090506-15
  * This is the menu driver.  All the magic happens here.
  *
  * Copyright (c)2006-2009 Anacaz Networks, Inc., ALL RIGHTS RESERVED

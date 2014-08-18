@@ -18,7 +18,6 @@
  *
  * u-boot jump vector interface file.
  *
- * rfa - 061102-090506-15
  * This file contains the common file creation and manipulation functions
  * and routines for TLS files and LOG files.
  *

@@ -18,7 +18,6 @@
  *
  * u-boot jump vector interface file.
  *
- * rfa - 061102-090506-15
  * Copyright(c) Anacaz Networks, Inc., ALL RIGHTS RESERVED
  *
  * rfa - 060718-20-0804-07

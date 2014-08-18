@@ -16,9 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * u-boot jump vector interface file.
- *
- * rfa - 061102-090506-15
  * rfa - 060725-1003-05-06
  */
 #include <common.h>

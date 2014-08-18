@@ -18,7 +18,6 @@
  *
  * u-boot jump vector interface file.
  *
- * rfa - 061102-090506-15
  * IDS <--> TLS/IDS/ELF application mailbox execution/status facility.
  *
  * Created to remove the jmpvec structure that now exists.  A simple

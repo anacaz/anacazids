@@ -18,7 +18,6 @@
  *
  * u-boot jump vector interface file.
  *
- * rfa - 061102-090506-15
  * This is the test execution driver.  All test exection, counter manipulation,
  * statistics collection, and fail policy invocation happens here.
  *
