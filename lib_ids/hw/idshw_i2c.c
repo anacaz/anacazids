@@ -1,12 +1,31 @@
 /*
  * Integrated Diagnostics Subsystem
  *
+ * This file is part of anacazids.
+ * 
+ * anacazids is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * u-boot jump vector interface file.
+ *
+ * rfa - 061102-090506-15
  * IDS I2C hardware driver and state machine.
  *
  * Copyright (c)2006-2009 Anacaz Networks, Inc., ALL RIGHTS RESERVED
  *
  * rfa - 061023
  */
+#include <stdint.h>
 #include <common.h>
 #include <idssm.h>
 #include <idshw.h>
@@ -27,7 +46,7 @@ typedef struct i2c
 	 */
 	struct
 	{
-		unsigned char	dev;
+		uint8_t		dev;
 		int		bus;
 		int		speed;
 		int		slave;
@@ -42,8 +61,8 @@ typedef struct i2c
 	{
 		struct i2creg
 		{
-			unsigned char	r;
-			unsigned char	_[3];
+			uint8_t		r;
+			uint8_t		_[3];
 		} 		ad;
 		i2creg_t	fd;
 		i2creg_t	cc;
