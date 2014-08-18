@@ -3,12 +3,32 @@
 /*
  * Integrated Diagnostics Subsystem
  *
+ * Copyright (c) 2006-2014 "Anacaz Networks, Inc."
+ * Diagnostics subsystem for U-Boot
+ * 
+ * This file is part of anacazids.
+ * 
+ * anacazids is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
  * rfa - 060718-19-20-24-25-26-27-090518-31-0617-0701
  */
 
 void exit(int);
 #ifndef LINUX
 #define strtol		simple_strtol
+#else
+#include <time.h>
 #endif /* !LINUX */
 
 /*
