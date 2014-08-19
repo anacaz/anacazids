@@ -1,12 +1,29 @@
+#ifndef _i2c_h
+#define _i2c_h
 /*
  * Integrated Diagnostics Subsystem
+ *
+ * Copyright (c) 2006-2014 "Anacaz Networks, Inc."
+ * Diagnostics subsystem for U-Boot
+ * 
+ * This file is part of anacazids.
+ * 
+ * anacazids is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Diagnostic Test Suite - i2c.h
  *
  */
-
-#ifndef _I2C_H_
-#define _I2C_H_
 
 #include <io.h>  /* brings in byteorder.h and types.h */
 
@@ -163,4 +180,4 @@ int d_i2c_16b_line_write (unsigned char dev, unsigned int addr, int alen, unsign
 unsigned char d_i2c_reg_read (uchar chip, uchar reg, int bus, int delay);
 void  d_i2c_reg_write(uchar chip, uchar reg, uchar val, int bus, int delay);
 
-#endif	/* _I2C_H_ */
+#endif	/* !_i2c_h */
