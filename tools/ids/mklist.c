@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * rfa - 060719-24-25-26-27
+ * rfa - 140826
  */
 #include <stdio.h>
 #include <stdint.h>
@@ -43,17 +44,15 @@ static int tlssize = 0;
 
 int main(int argc, char **argv)
 {
-	char **p, *ext;
+	char *ext;
 	struct stat sb;
 	int tlsfd, idsfd;
-	char *file;
 	static char tlsfile[256];
 	static char idsfile[256];
 	static char buffer[0x10000];
 	int bytes;
 	static list_hdr_t list_hdr;
 	int ids_file_count;
-	static test_hdr_t test_hdr;
 	static char systemcmd[256];
 	char *pass, *fail;
 
@@ -129,12 +128,12 @@ int main(int argc, char **argv)
 		 */
 		if ((idsfd = open(idsfile, O_RDONLY)) == -1)
 		{
-
 			perror(idsfile);
 			close(tlsfd);
 			sprintf(systemcmd, "rm %s", tlsfile);
 			printf("%s\n", systemcmd);
-			system(systemcmd);
+			if (system(systemcmd) == -1)
+				printf("error: unable to remove file %s\n", tlsfile);
 			exit(-1);
 		}
 		if (fstat(idsfd, &sb) == -1)
@@ -143,7 +142,8 @@ int main(int argc, char **argv)
 			close(tlsfd);
 			sprintf(systemcmd, "rm %s", tlsfile);
 			printf("%s\n", systemcmd);
-			system(systemcmd);
+			if (system(systemcmd) == -1)
+				printf("error: unable to remove file %s\n", tlsfile);
 			exit(-1);
 		}
 		/*
@@ -156,7 +156,8 @@ int main(int argc, char **argv)
 			close(tlsfd);
 			sprintf(systemcmd, "rm %s", tlsfile);
 			printf("%s\n", systemcmd);
-			system(systemcmd);
+			if (system(systemcmd) == -1)
+				printf("error: unable to remove file %s\n", tlsfile);
 			exit(-1);
 		}
 		/*
@@ -174,7 +175,8 @@ int main(int argc, char **argv)
 			close(tlsfd);
 			sprintf(systemcmd, "rm %s", tlsfile);
 			printf("%s\n", systemcmd);
-			system(systemcmd);
+			if (system(systemcmd) == -1)
+				printf("error: unable to remove file %s\n", tlsfile);
 			exit(-1);
 		}
 
